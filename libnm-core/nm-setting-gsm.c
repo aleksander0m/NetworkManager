@@ -332,9 +332,13 @@ verify (NMSetting *setting, NMConnection *connection, GError **error)
 		 * it would appear that none are placed on APNs either, but many modems
 		 * and networks will fail to accept APNs that include odd characters
 		 * like space ( ) and such.
+		 *
+		 * NOTE: '|' is explicitly allowed here to allow passing multiple APN
+		 * strings through the same property.
 		 */
 		for (i = 0; i < apn_len; i++) {
 			if (   !g_ascii_isalnum (priv->apn[i])
+			    && (priv->apn[i] != '|')
 			    && (priv->apn[i] != '.')
 			    && (priv->apn[i] != '_')
 			    && (priv->apn[i] != '-')) {

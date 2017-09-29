@@ -1334,7 +1334,7 @@ test_read_gsm_connection (void)
 	/* ===== GSM SETTING ===== */
 	s_gsm = nm_connection_get_setting_gsm (connection);
 	g_assert (s_gsm);
-	g_assert_cmpstr (nm_setting_gsm_get_apn (s_gsm), ==, "ISP.CINGULAR");
+	g_assert_cmpstr (nm_setting_gsm_get_apn (s_gsm), ==, "ISP.CINGULAR|INTERNET");
 	g_assert_cmpstr (nm_setting_gsm_get_username (s_gsm), ==, "ISP@CINGULARGPRS.COM");
 	g_assert_cmpstr (nm_setting_gsm_get_password (s_gsm), ==, "CINGULAR1");
 	g_assert_cmpstr (nm_setting_gsm_get_network_id (s_gsm), ==, "24005");

@@ -413,8 +413,9 @@ test_setting_gsm_apn_bad_chars (void)
 	g_object_set (s_gsm, NM_SETTING_GSM_NUMBER, "*99#", NULL);
 
 	/* Make sure a valid APN works */
-	g_object_set (s_gsm, NM_SETTING_GSM_APN, "foobar123.-baz", NULL);
+	g_object_set (s_gsm, NM_SETTING_GSM_APN, "foobar123.-baz|123", NULL);
 	g_assert (nm_setting_verify (NM_SETTING (s_gsm), NULL, NULL));
+	g_assert_cmpstr (nm_setting_gsm_get_apn (s_gsm), ==, "foobar123.-baz|123");
 
 	/* Random invalid chars */
 	g_object_set (s_gsm, NM_SETTING_GSM_APN, "@#%$@#%@#%", NULL);
@@ -2555,4 +2556,3 @@ int main (int argc, char **argv)
 
 	return g_test_run ();
 }
-
